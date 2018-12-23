@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yufb.top.dao.userInfo.UserMapper">
+    <select id="findAllUser" resultType="com.yufb.top.entity.userInfo.User">
+        select * from user
+    </select>
+
+    <select id="getAll" resultType="HashMap" parameterType="HashMap">
+        select
+            user_id as userId,
+            name,
+            age,
+            sex,
+            phone,
+            height,
+            weight,
+            del
+        from user
+        where 1=1
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex}
+        </if>
+        <if test="start != null &amp;&amp; end != null">
+            limit #{start},#{end}
+        </if>
+        order by user_id asc
+    </select>
+
+
+    <select id="count" resultType="Integer" >
+        select count(*) from user
+        where 1=1
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex}
+        </if>
+    </select>
+
+
+    <insert id="add" parameterType="HashMap" >
+        INSERT INTO user(user_id
+        <if test="name != null">,name</if>
+        <if test="age != null">,age</if>
+        <if test="sex != null">, sex</if>
+        <if test="phone != null">, phone</if>
+        <if test="height != null">, height</if>
+        <if test="weight != null">, weight</if>
+        <if test="del != null">, del</if>
+        ) VALUES (#{userId}
+        <if test="name != null">, #{name}</if>
+        <if test="age != null">,#{age}</if>
+        <if test="sex != null">, #{sex}</if>
+        <if test="phone != null">, #{phone}</if>
+        <if test="height != null">, #{height}</if>
+        <if test="weight != null">, #{weight}</if>
+        <if test="del != null">, #{del}</if>
+        )
+    </insert>
+
+
+    <update id="del" parameterType="HashMap">
+        update user set del = '1' where del = '0'
+         <if test="userId != null"> and user_id = #{userId}</if>
+    </update>
+
+
+    <update id="update" parameterType="HashMap">
+        UPDATE user
+        <set>
+            user_id = #{userId}
+            <if test="name != null">
+                , name = #{name}
+            </if>
+            <if test="age != null">
+                , age = #{age}
+            </if>
+            <if test="sex != null">
+                , sex = #{sex}
+            </if>
+            <if test="phone != null">
+                , phone = #{phone}
+            </if>
+            <if test="height != null">
+                , height = #{height}
+            </if>
+            <if test="weight != null">
+                , weight = #{weight}
+            </if>
+            <if test="del != null">
+                , del = #{del}
+            </if>
+        </set>
+        WHERE  del = '0' and user_id = #{userId}
+    </update>
+
+
+    <select id="selectBatch" parameterType="ArrayList" resultType="HashMap">
+        SELECT
+            user_id as userId,
+            name,
+            age,
+            sex,
+            height,
+            weight,
+            del
+        FROM user WHERE del = '0' AND (user_id='000'
+        <foreach collection="list" item="item" index="index" separator=" " open=" " close="">
+            OR user_id=#{item.userId}
+        </foreach>
+        )
+    </select>
+</mapper>
