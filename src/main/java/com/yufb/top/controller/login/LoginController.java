@@ -16,7 +16,7 @@ public class LoginController {
      */
     @GetMapping
     public String index(@RequestParam Map<String,Object> params){
-        return "login/index";
+        return "home/index";
     }
 
     /**
@@ -24,7 +24,7 @@ public class LoginController {
      */
     @GetMapping(value = "list")
     public String list(@RequestParam Map<String,Object> params){
-        return "login/list";
+        return "home/list";
     }
 
     /**
@@ -32,7 +32,7 @@ public class LoginController {
      */
     @GetMapping(value = "show")
     public String show(@RequestParam Map<String,Object> params){
-        return "login/show";
+        return "home/show";
     }
 
 
@@ -41,10 +41,16 @@ public class LoginController {
      */
     @GetMapping(value = "404")
     public String fourZeroFour(@RequestParam Map<String,Object> params){
-        return "login/404";
+        return "home/404";
     }
 
-
+    /**
+     * 跳转到后台首页
+     */
+    @GetMapping(value = "index")
+    public String afterIndex(@RequestParam Map<String,Object> params){
+        return "xadmin/index";
+    }
 
 
 }
