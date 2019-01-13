@@ -19,6 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan("com.yufb.top.dao.*")
 @ComponentScan(basePackages = {"com.yufb.top.*"})
+
 public class WarApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -29,8 +30,6 @@ public class WarApplication extends SpringBootServletInitializer {
         SpringApplication.run(WarApplication.class, args);
     }
 }
-
-
 
 
 */

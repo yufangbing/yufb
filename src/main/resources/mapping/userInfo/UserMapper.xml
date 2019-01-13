@@ -3,7 +3,7 @@
 
 <mapper namespace="com.yufb.top.dao.userInfo.UserMapper">
     <select id="findAllUser" resultType="com.yufb.top.entity.userInfo.User">
-        select * from user
+        select * from product
     </select>
 
     <select id="getAll" resultType="HashMap" parameterType="HashMap">

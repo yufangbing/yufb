@@ -7,9 +7,9 @@ spring:
   datasource:
     name: mytest
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mysql?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+    url: jdbc:mysql://101.132.148.132:3306/mysql?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
     username: root
-    password: root
+    password: yu99HOPE@FiSH!&#*11
 
     ## druid连接池等配置‘
     ##type: com.alibaba.druid.pool.DruidDataSource
