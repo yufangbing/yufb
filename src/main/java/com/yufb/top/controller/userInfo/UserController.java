@@ -1,7 +1,9 @@
 package com.yufb.top.controller.userInfo;
 
 import com.yufb.top.service.userInfo.UserService;
+import com.yufb.top.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
 
     @GetMapping(value = {"/findAll"})
     public List getAllUsers(@RequestParam Map<String,Object> params){
@@ -29,6 +37,9 @@ public class UserController {
     @GetMapping(value = {"/count"})
     public Integer count(@RequestParam Map<String,Object> params){
         Integer count =  userService.count(params);
+        Object st = stringRedisTemplate.opsForValue().get("test");
+        stringRedisTemplate.opsForValue().set("one","111");
+        redisUtil.setKeyValue("two","222");
         return count;
     }
 

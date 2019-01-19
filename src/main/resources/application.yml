@@ -27,6 +27,12 @@ spring:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
 
+  redis:
+    host: 101.132.148.132
+    password: yuhope99
+    port: 6379
+
+
   thymeleaf:
     prefix: classpath:/templates/
 
