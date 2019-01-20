@@ -232,14 +232,12 @@ public class RedisUtil {
 	 */
 	public String rpop(final String key){
 		String result = redisTemplate.execute(new RedisCallback<String>(){
-
 			@Override
 			public String doInRedis(RedisConnection redisConnection) throws DataAccessException {
 				RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
 				byte[] res =  redisConnection.rPop(serializer.serialize(key));
 				return serializer.deserialize(res);
 			}
-			
 		});
 		return result;
 	}

@@ -138,4 +138,15 @@ public class LoginController {
     }
 
 
+    /**
+     * 灵魂画板
+     * @param params
+     * @return
+     */
+    @GetMapping(value = "soulPainter")
+    public String soulPainter(@RequestParam Map<String,Object> params){
+        return "drawingboard/soulPainter";
+    }
+
+
 }
